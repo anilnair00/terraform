@@ -1,0 +1,54 @@
+pipeline:
+  name: mygitpipeline
+  identifier: mygitpipeline
+  projectIdentifier: default_project
+  orgIdentifier: default
+  tags: {}
+  stages:
+    - stage:
+        name: mytest
+        identifier: mytest
+        description: ""
+        type: IACM
+        spec:
+          infrastructure:
+            type: KubernetesDirect
+            spec:
+              connectorRef: test
+              namespace: harness-delegate-ng
+              volumes: []
+              annotations: {}
+              labels: {}
+              automountServiceAccountToken: true
+              nodeSelector: {}
+              containerSecurityContext:
+                capabilities:
+                  drop: []
+                  add: []
+              os: Linux
+              hostNames: []
+          workspace: testgithub
+          execution:
+            steps:
+              - step:
+                  type: IACMTerraformPlugin
+                  name: init
+                  identifier: init
+                  timeout: 10m
+                  spec:
+                    command: init
+              - step:
+                  type: IACMTerraformPlugin
+                  name: plan
+                  identifier: plan
+                  timeout: 10m
+                  spec:
+                    command: plan
+              - step:
+                  type: IACMTerraformPlugin
+                  name: apply
+                  identifier: apply
+                  timeout: 10m
+                  spec:
+                    command: apply
+        tags: {}
