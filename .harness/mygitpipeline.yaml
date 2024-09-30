@@ -52,3 +52,10 @@ pipeline:
                   spec:
                     command: apply
         tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: gitHubConnector
+        repoName: terraform
+        build: <+input>
+        sparseCheckout: []
