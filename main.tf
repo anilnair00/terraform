@@ -14,6 +14,6 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "example" {
-  name     = mytestrg
-  location = eastus2
+  name     = variable.resource_group_name
+  location = variable.location
 }
