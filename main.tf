@@ -14,6 +14,6 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "example" {
-  name     = variable.resource_group_name
-  location = variable.location
+  name     = var.resource_group_name
+  location = var.location
 }
