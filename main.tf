@@ -3,7 +3,7 @@ terraform {
   required_providers {
     azurerm = {
       source = "hashicorp/azurerm"
-      version = "~>4.3.0"
+      version = "~>3.0.0"
     }
   }
   backend "azurerm" {
@@ -12,7 +12,6 @@ terraform {
     container_name       = "tfstate"
     key                  = "dev.tfstate"
   }
-}
 }
 
 # Provider Block
