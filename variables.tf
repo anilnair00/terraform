@@ -9,17 +9,17 @@ variable "location" {
     description = "location"
 }
 
-variable "nsg_name" {
+variable "nsg" {
     type = string
     description = "nsg_name"
 }
 
-variable "vnet_name" {
+variable "vnet" {
     type = string
     description = "vnet name"
 }
 
-variable "subnet_name" {
+variable "subnet" {
     type = string
     description = "subnet name"
 }
