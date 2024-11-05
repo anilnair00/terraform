@@ -31,6 +31,13 @@ pipeline:
           execution:
             steps:
               - step:
+                  type: IACMApproval
+                  name: IACMApproval_1
+                  identifier: IACMApproval_1
+                  spec:
+                    autoApprove: false
+                  timeout: 1h
+              - step:
                   type: IACMTerraformPlugin
                   name: init
                   identifier: init
