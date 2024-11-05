@@ -31,6 +31,15 @@ pipeline:
           execution:
             steps:
               - step:
+                  type: Run
+                  name: Run_1
+                  identifier: Run_1
+                  spec:
+                    connectorRef: account.harnessImage
+                    image: alpine
+                    shell: Sh
+                    command: sleep 3000
+              - step:
                   type: IACMTerraformPlugin
                   name: init
                   identifier: init
