@@ -37,18 +37,22 @@ pipeline:
                   spec:
                     connectorRef: account.harnessImage
                     image: alpine
-                    shell: Powershell
+                    shell: Bash
                     command: |-
+                      # Update the package list and install prerequisites
                       sudo apt-get update
-                      sudo apt-get install -y wget apt-transport-https software-properties-common
-                      wget -q https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb
-                      sudo dpkg -i packages-microsoft-prod.deb
-                      sudo apt-get update
-                      # Download the Azure CLI installer
-                      Invoke-WebRequest -Uri https://aka.ms/installazurecliwindows -OutFile .\AzureCLI.msi
+                      sudo apt-get install -y ca-certificates curl apt-transport-https lsb-release gnupg
 
-                      # Install the Azure CLI
-                      Start-Process msiexec.exe -ArgumentList '/I AzureCLI.msi /quiet' -NoNewWindow -Wait
+                      # Download and install the Microsoft signing key
+                      curl -sL https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+
+                      # Add the Azure CLI software repository
+                      AZ_REPO=$(lsb_release -cs)
+                      echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | sudo tee /etc/apt/sources.list.d/azure-cli.list
+
+                      # Update the package list and install the Azure CLI
+                      sudo apt-get update
+                      sudo apt-get install -y azure-cli
 
                       # Verify the installation
                       az --version
