@@ -31,6 +31,23 @@ pipeline:
           execution:
             steps:
               - step:
+                  type: Run
+                  name: azcli
+                  identifier: azcli
+                  spec:
+                    connectorRef: account.harnessImage
+                    image: alpine
+                    shell: Powershell
+                    command: |-
+                      # Download the Azure CLI installer
+                      Invoke-WebRequest -Uri https://aka.ms/installazurecliwindows -OutFile .\AzureCLI.msi
+
+                      # Install the Azure CLI
+                      Start-Process msiexec.exe -ArgumentList '/I AzureCLI.msi /quiet' -NoNewWindow -Wait
+
+                      # Verify the installation
+                      az --version
+              - step:
                   type: IACMTerraformPlugin
                   name: init
                   identifier: init
