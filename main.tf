@@ -6,12 +6,7 @@ terraform {
       version = "~>3.0.0"
     }
   }
-  backend "azurerm" {
-    resource_group_name  = "Testvm_group"
-    storage_account_name = "testvmgroupb7e2"
-    container_name       = "tfstate"
-    key                  = "dev.tfstate"
-  }
+  backend "azurerm" {}
 }
 # Provider Block
 provider "azurerm" {
