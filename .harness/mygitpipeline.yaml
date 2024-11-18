@@ -32,7 +32,7 @@ pipeline:
             steps:
               - step:
                   type: Plugin
-                  name: Plugin_1
+                  name: image
                   identifier: Plugin_1
                   spec:
                     connectorRef: myregistry
