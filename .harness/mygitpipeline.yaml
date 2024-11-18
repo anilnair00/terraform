@@ -36,7 +36,7 @@ pipeline:
                   identifier: Plugin_1
                   spec:
                     connectorRef: myregistry
-                    image: myrepo:1500
+                    image: anilnair92/myrepo:1500
               - step:
                   type: IACMTerraformPlugin
                   name: init
