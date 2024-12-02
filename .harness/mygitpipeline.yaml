@@ -37,8 +37,8 @@ pipeline:
                   timeout: 10m
                   spec:
                     command: init
-                    connectorRef: ACRAZURECONNNECTIVITY
                     image: mytestreg.azurecr.io/newpackage:new
+                    connectorRef: ACRAZURECONNNECTIVITY
               - step:
                   type: IACMTerraformPlugin
                   name: plan
@@ -46,8 +46,8 @@ pipeline:
                   timeout: 10m
                   spec:
                     command: plan
+                    image: mytestreg.azurecr.io/newpackage:new
                     connectorRef: ACRAZURECONNNECTIVITY
-                    image: mytestreg.azurecr.io./newpackage:new
               - step:
                   type: IACMTerraformPlugin
                   name: apply
@@ -55,8 +55,8 @@ pipeline:
                   timeout: 10m
                   spec:
                     command: apply
-                    connectorRef: ACRAZURECONNNECTIVITY
                     image: mytestreg.azurecr.io/newpackage:new
+                    connectorRef: ACRAZURECONNNECTIVITY
         tags: {}
   properties:
     ci:
