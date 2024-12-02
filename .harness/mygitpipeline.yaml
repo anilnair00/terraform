@@ -38,7 +38,7 @@ pipeline:
                   spec:
                     command: init
                     connectorRef: ACRAZURECONNNECTIVITY
-                    image: mytestreg.azurecr.io.azurecr.io/newpackage:new
+                    image: mytestreg.azurecr.io/newpackage:new
               - step:
                   type: IACMTerraformPlugin
                   name: plan
@@ -47,7 +47,7 @@ pipeline:
                   spec:
                     command: plan
                     connectorRef: ACRAZURECONNNECTIVITY
-                    image: mytestreg.azurecr.io.azurecr.io/newpackage:new
+                    image: mytestreg.azurecr.io./newpackage:new
               - step:
                   type: IACMTerraformPlugin
                   name: apply
@@ -56,7 +56,7 @@ pipeline:
                   spec:
                     command: apply
                     connectorRef: ACRAZURECONNNECTIVITY
-                    image: mytestreg.azurecr.io.azurecr.io/newpackage:new
+                    image: mytestreg.azurecr.io/newpackage:new
         tags: {}
   properties:
     ci:
