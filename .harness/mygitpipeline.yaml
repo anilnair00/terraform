@@ -6,6 +6,39 @@ pipeline:
   tags: {}
   stages:
     - stage:
+        name: docker build ACR
+        identifier: docker_build_ACR
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          infrastructure:
+            type: KubernetesDirect
+            spec:
+              connectorRef: test
+              namespace: harness-delegate-ng
+              automountServiceAccountToken: true
+              nodeSelector: {}
+              os: Linux
+          execution:
+            steps:
+              - step:
+                  type: BuildAndPushACR
+                  name: BuildAndPushACR_1
+                  identifier: BuildAndPushACR_1
+                  spec:
+                    connectorRef: ACRAZURECONNNECTIVITY
+                    repository: mytestreg.azurecr.io/lastversion
+                    tags:
+                      - latest
+          sharedPaths:
+            - ""
+          caching:
+            enabled: false
+            paths: []
+          buildIntelligence:
+            enabled: false
+    - stage:
         name: mytest
         identifier: mytest
         description: ""
@@ -62,6 +95,6 @@ pipeline:
     ci:
       codebase:
         connectorRef: gitHubConnector
-        repoName: terraform
+        repoName: windows-runner
         build: <+input>
         sparseCheckout: []
