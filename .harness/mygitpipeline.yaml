@@ -59,7 +59,7 @@ pipeline:
                     connectorRef: ACRAZURECONNNECTIVITY
               - step:
                   type: IACMTerraformPlugin
-                  name: IACMTerraformPlugin_4
+                  name: destroy
                   identifier: IACMTerraformPlugin_4
                   spec:
                     command: destroy
