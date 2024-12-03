@@ -6,39 +6,6 @@ pipeline:
   tags: {}
   stages:
     - stage:
-        name: docker build ACR
-        identifier: docker_build_ACR
-        description: ""
-        type: CI
-        spec:
-          cloneCodebase: true
-          infrastructure:
-            type: KubernetesDirect
-            spec:
-              connectorRef: test
-              namespace: harness-delegate-ng
-              automountServiceAccountToken: true
-              nodeSelector: {}
-              os: Linux
-          execution:
-            steps:
-              - step:
-                  type: BuildAndPushACR
-                  name: BuildAndPushACR_1
-                  identifier: BuildAndPushACR_1
-                  spec:
-                    connectorRef: ACRAZURECONNNECTIVITY
-                    repository: mytestreg.azurecr.io/lastversion
-                    tags:
-                      - latest
-          sharedPaths:
-            - ""
-          caching:
-            enabled: false
-            paths: []
-          buildIntelligence:
-            enabled: false
-    - stage:
         name: mytest
         identifier: mytest
         description: ""
@@ -90,6 +57,15 @@ pipeline:
                     command: apply
                     image: mytestreg.azurecr.io/lastversion:latest
                     connectorRef: ACRAZURECONNNECTIVITY
+              - step:
+                  type: IACMTerraformPlugin
+                  name: IACMTerraformPlugin_4
+                  identifier: IACMTerraformPlugin_4
+                  spec:
+                    command: destroy
+                    image: mytestreg.azurecr.io/lastversion:latest
+                    connectorRef: ACRAZURECONNNECTIVITY
+                  timeout: 10m
         tags: {}
   properties:
     ci:
