@@ -37,8 +37,6 @@ pipeline:
                   timeout: 10m
                   spec:
                     command: init
-                    image: mytestreg.azurecr.io/lastversion:latest
-                    connectorRef: ACRAZURECONNNECTIVITY
               - step:
                   type: IACMTerraformPlugin
                   name: plan
@@ -46,8 +44,6 @@ pipeline:
                   timeout: 10m
                   spec:
                     command: plan
-                    image: mytestreg.azurecr.io/lastversion:latest
-                    connectorRef: ACRAZURECONNNECTIVITY
               - step:
                   type: IACMTerraformPlugin
                   name: apply
@@ -55,16 +51,12 @@ pipeline:
                   timeout: 10m
                   spec:
                     command: apply
-                    image: mytestreg.azurecr.io/lastversion:latest
-                    connectorRef: ACRAZURECONNNECTIVITY
               - step:
                   type: IACMTerraformPlugin
                   name: destroy
                   identifier: IACMTerraformPlugin_4
                   spec:
                     command: destroy
-                    image: mytestreg.azurecr.io/lastversion:latest
-                    connectorRef: ACRAZURECONNNECTIVITY
                   timeout: 10m
         tags: {}
   properties:
