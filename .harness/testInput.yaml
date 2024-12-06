@@ -1,0 +1,20 @@
+inputSet:
+  name: testInput
+  identifier: testInput
+  orgIdentifier: default
+  projectIdentifier: default_project
+  pipeline:
+    identifier: TestPipeline
+    template:
+      templateInputs:
+        stages:
+          - stage:
+              identifier: Dev
+              type: IACM
+              spec:
+                infrastructure:
+                  type: KubernetesDirect
+                  spec:
+                    connectorRef: test
+                    namespace: harness-delegate-ng
+                workspace: testgithub
