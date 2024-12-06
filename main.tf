@@ -1,4 +1,3 @@
-
 # Terraform Block
 terraform {
   required_providers {
